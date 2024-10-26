@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy bithday</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Chúc mừng sinh nhật em! </h1>
+        <p>Tuổi mới nhiều niềm vui, mong em  sẽ có nhiều khoảng khắc đẹp sắp tới!</p>
+        <button onclick="openLetter()">Mở thư nha Sinh 💌</button>
+
+        <div class="letter-container" id="letter">
+            <div class="letter">
+                <h2>Thư Sinh Nhật</h2>
+                <p>Chúc mừng sinh nhật! Hy vọng em sẽ luôn vui vẻ, 
+                tràn đầy năng lượng và đạt được những ước mơ của mình. 
+                Hãy tận hưởng ngày đặc biệt của em nhá! 🎂</p>
+                <p>Chúc em nhiều sức khỏe và hạnh phúc!</p>
+                <button onclick="closeLetter()">Đóng Thư</button>
+            </div>
+        </div>
+
+        <div class="balloons" id="balloons"></div>
+    </div>
+
+    <script>
+        function openLetter() {
+            // Hiển thị lá thư và thả bóng bay
+            document.getElementById("letter").style.display = "flex";
+            showSurprise();
+        }
+
+        function closeLetter() {
+            // Ẩn lá thư
+            document.getElementById("letter").style.display = "none";
+        }
+
+        function showSurprise() {
+            const balloonContainer = document.getElementById("balloons");
+            balloonContainer.innerHTML = ''; // Xóa bóng cũ (nếu có)
+            for (let i = 0; i < 30; i++) {
+                const balloon = document.createElement("div");
+                balloon.classList.add("balloon");
+                balloon.style.backgroundColor = getRandomColor();
+                balloon.style.left = `${Math.random() * 100}%`;
+                balloon.style.animationDelay = `${Math.random() * 2}s`; // Thời gian bay ngẫu nhiên
+                balloonContainer.appendChild(balloon);
+            }
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>
